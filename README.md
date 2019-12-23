@@ -11,14 +11,14 @@ PS：后台数据服务使用的是bmob后端云，如果没用过，请先到 h
 
 ## 程序效果
 <p>
-<img width="32%" src="https://github.com/KuoLuoC/JZ_app/imgs_view/11.gif" />
-<img width="32%" src="https://github.com/KuoLuoC/JZ_app/imgs_view/1.jpg" />
-<img width="32%" src="https://github.com/KuoLuoC/JZ_app/imgs_view/2.jpg" />
-<img width="32%" src="https://github.com/KuoLuoC/JZ_app/imgs_view/3.jpg" />
-<img width="32%" src="https://github.com/KuoLuoC/JZ_app/imgs_view/4.jpg" />
-<img width="32%" src="https://github.com/KuoLuoC/JZ_app/imgs_view/5.jpg" />
-<img width="32%" src="https://github.com/KuoLuoC/JZ_app/imgs_view/6.jpg" />
-<img width="32%" src="https://github.com/KuoLuoC/JZ_app/imgs_view/7.jpg" />
+<img width="32%" src="![加载失败]https://github.com/KuoLuoC/JZ_app/blob/master/app/src/main/res/mipmap-hdpi/1.jpg" />
+<img width="32%" src="![加载失败]https://github.com/KuoLuoC/JZ_app/blob/master/app/src/main/res/mipmap-hdpi/2.jpg" />
+<img width="32%" src="![加载失败]https://github.com/KuoLuoC/JZ_app/blob/master/app/src/main/res/mipmap-hdpi/3.jpg" />
+<img width="32%" src="![加载失败]https://github.com/KuoLuoC/JZ_app/blob/master/app/src/main/res/mipmap-hdpi/4.jpg" />
+<img width="32%" src="![加载失败]https://github.com/KuoLuoC/JZ_app/blob/master/app/src/main/res/mipmap-hdpi/5.jpg" />
+<img width="32%" src="![加载失败]https://github.com/KuoLuoC/JZ_app/blob/master/app/src/main/res/mipmap-hdpi/6.jpg" />
+<img width="32%" src="![加载失败]https://github.com/KuoLuoC/JZ_app/blob/master/app/src/main/res/mipmap-hdpi/7.jpg" />
+
 
 
 
