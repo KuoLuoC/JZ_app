@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="2">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?attr/colorPrimary"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:src="@mipmap/login_back"
+        android:layout_marginTop="-10dp"
+        android:layout_above="@+id/ll_login_pane"
+        android:layout_centerHorizontal="true"
+        />
+    <LinearLayout
+        android:id="@+id/ll_login_pane"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_marginBottom="-50dp"
+        android:background="@drawable/round_corner_bg">
+
+        <EditText
+            android:id="@+id/login_et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:inputType="textWebEmailAddress"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:minHeight="45dp"
+            android:drawableLeft="@drawable/email"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="请输入Email"
+            android:singleLine="true"
+            android:textSize="13sp"
+            android:background="@drawable/selector_edittext_bg"/>
+        <EditText
+        android:id="@+id/login_et_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:minHeight="45dp"
+        android:drawableLeft="@drawable/username1"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:hint="请输入用户名/Email"
+        android:singleLine="true"
+        android:textSize="13sp"
+        android:background="@drawable/selector_edittext_bg"/>
+        <EditText
+            android:id="@+id/login_et_username1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:minHeight="45dp"
+            android:drawableLeft="@drawable/username1"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="请输入用户名"
+            android:visibility="gone"
+            android:singleLine="true"
+            android:textSize="13sp"
+            android:background="@drawable/selector_edittext_bg"/>
+
+        <EditText
+            android:id="@+id/login_et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:minHeight="45dp"
+            android:drawableLeft="@drawable/mima"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="请输入密码"
+            android:singleLine="true"
+            android:textSize="13sp"
+            android:background="@drawable/selector_edittext_bg"/>
+
+        <EditText
+            android:id="@+id/login_et_rpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:inputType="textPassword"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:minHeight="45dp"
+            android:drawableLeft="@drawable/mima"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="再次输入密码"
+            android:singleLine="true"
+            android:textSize="13sp"
+            android:background="@drawable/selector_edittext_bg"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f3f3f3"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#f7f7f7">
+
+            <TextView
+                android:id="@+id/login_tv_forget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:text="忘记密码?"
+                android:textSize="12sp"
+                android:textColor="#999999"/>
+            <TextView
+                android:id="@+id/login_tv_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:text="注册"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="20dp"
+                android:textSize="12sp"
+                android:textColor="#999999"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#eeeeee">
+
+            <Button
+                android:id="@+id/login_btn_login"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:text="登       录"
+                android:textStyle="bold"
+                style="@style/Button.Default"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <com.wzq.jz_app.widget.OwlView
+        android:id="@+id/land_owl_view"
+        android:layout_width="175dp"
+        android:layout_height="107dp"
+        android:visibility="gone"
+        android:layout_above="@+id/ll_login_pane"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
+

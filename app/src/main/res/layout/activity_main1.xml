@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#FFFFFFFF"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent" >
+
+                <fragment
+                    android:id="@+id/main_activity_home"
+                    android:name="com.wzq.jz_app.ui.fragment.HomeFragment"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+
+                <fragment
+                    android:id="@+id/fragment_month_chart"
+                    android:name="com.wzq.jz_app.ui.fragment.ChartFragment"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+
+                <fragment
+                    android:id="@+id/main_activity_more"
+                    android:name="com.wzq.jz_app.ui.fragment.MoreFragment"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+                <fragment
+                    android:id="@+id/main_activity_mine"
+                    android:name="com.wzq.jz_app.ui.fragment.MineFragment"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.0"
+            android:visibility="gone" />
+
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+
+            >
+
+            <!--android:background="@drawable/bk_footer" -->
+
+            <RadioButton
+                android:id="@+id/radio_home"
+                style="@style/main_tab_bottom"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/footer_home_selector"
+                android:text="账 单"
+                android:button="@null"
+                android:checked="true"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/radio_chart"
+                style="@style/main_tab_bottom"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/footer_chart_selector"
+                android:text="图 表"
+                android:textColor="@color/black"/>
+
+
+            <RadioButton
+                android:id="@+id/radio_add"
+                style="@style/main_tab_bottom"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:layout_marginBottom="3dp"
+                android:drawableTop="@drawable/footer_add_selector"
+                android:text="" />
+
+            <RadioButton
+                android:id="@+id/radio_more"
+                style="@style/main_tab_bottom"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/footer_more_selector"
+                android:text="更 多"
+                android:textColor="@color/black"/>
+            <RadioButton
+                android:id="@+id/radio_mine"
+                style="@style/main_tab_bottom"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/footer_mycenter_selector"
+                android:text="我 的"
+                android:textColor="@color/black"/>
+        </RadioGroup>
+    </LinearLayout>
+
+</TabHost>

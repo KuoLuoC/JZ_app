@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 28
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId "com.wzq.jz_app"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+greendao {
+    //数据库的schema版本，也可以理解为数据库版本号
+    schemaVersion 1
+    //设置DaoMaster、DaoSession、Dao包名，也就是要放置这些类的包的全路径。
+    daoPackage 'com.wzq.jz_app'
+    //设置DaoMaster、DaoSession、Dao目录
+    targetGenDir 'src/main/java'
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    //Glide  加载图片
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    //MPAndroidChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
+    //Dialogs  进度条
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+    //PickerView 选择框
+    implementation 'com.contrarywind:Android-PickerView:4.1.6'
+    //About
+    implementation 'me.drakeet.support:about:2.2.0'
+    //Multitype
+    implementation 'me.drakeet.multitype:multitype-ktx:3.5.0'
+    //Greendao  数据库创建与管理的框架
+    implementation 'org.greenrobot:greendao:3.2.2'
+    //Eventbus 事件依赖
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    //Bmob  后端云服务平台
+    implementation 'cn.bmob.android:bmob-sdk:3.7.2'
+    //Rx 异步请求
+    implementation "io.reactivex.rxjava2:rxjava:2.2.2"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    //OkHttp  网络请求
+    implementation 'com.squareup.okio:okio:2.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+    //Tab
+    compile 'com.ashokvarma.android:bottom-navigation-bar:1.3.1'
+    //TabLayout
+    compile 'androidx.legacy:legacy-support-v4:1.0.0'
+    compile 'com.google.android.material:material:1.0.0'
+    compile 'androidx.appcompat:appcompat:1.0.0'
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+    compile 'com.github.bumptech.glide:glide:3.5.2'
+    compile 'com.squareup.picasso:picasso:2.5.1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //ViewPage
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    // Retrofit库
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    // 用Gson解析json的转换器
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //导出数据到Excel架包
+    implementation group: 'net.sourceforge.jexcelapi', name: 'jxl', version: '2.6.12'
+}
+

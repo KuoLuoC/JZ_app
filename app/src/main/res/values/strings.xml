@@ -1,0 +1,92 @@
+<resources>
+    <string name="app_name">家庭记账</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- main activity -->
+    <string name="first_title">明细</string>
+    <string name="second_title">记一笔</string>
+    <string name="third_title">报表</string>
+    <string name="four_title">账户</string>
+
+    <string name="tab_one">账单</string>
+    <string name="tab_two">图表</string>
+    <string name="tab_three">日历</string>
+    <string name="tab_four">我的</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--login activity-->
+    <string name="login_user_name">Tell me your register name or email.</string>
+    <string name="login_password">Tell me your password (be quiet!).</string>
+    <string name="register_user_name">Show me a cool user name!</string>
+    <string name="register_user_email">You can regain your password by email.</string>
+    <string name="register_password">I can keep secret!</string>
+
+    <!--about activity-->
+    <string name="about">关于APP</string>
+    <string name="about_introduce">家庭记账APP\n\n
+
+        ------APP主要功能--------\n\n
+        - 支持多账户记账\n
+        - 时间轴记账单，账单一目了然\n
+        - 还支持主题主题随意切换，注重页面美观\n
+        - 功能模块清晰，操作使用简单直白\n
+        - 支持账单数据导出，方便各个场景使用\n
+        - 数据同步，换手机，刷系统，账单轻松恢复\n
+        - 更多模块可扩展多功能应用（目前展示财经新闻）\n
+        - 账单统计功能，支持消费分析，消费情况清晰透明\n
+        ------APP使用指南--------\n\n
+        - 账单左滑可进行编辑、删除操作\n
+        - 点击时间控件图标可进行账单按月筛选\n
+        - 清除缓存会清楚本地账单数据，登录情况下可进行同步账单数据到服务器\n
+        - 登录情况点击头像可进行头像修改，未登录点击头像进行登录（注册操作）\n
+        - 更多使用体验之后你就懂了！！！\n
+    </string>
+    <string name="about_introduce2">ps:请勿在软件中填写个人隐私信息</string>
+    <string name="app_name_with_introduce">CocoBill - 理财的好帮手</string>
+    <string name="developers">开发人员:Wangzhiqiang\n
+
+    </string>
+
+    <!--other-->
+    <string name="rmb">¥</string>
+    <string name="login">登录</string>
+    <string name="forget_password">忘记密码？</string>
+    <string name="register">注册</string>
+    <string name="get_code">获取验证码</string>
+    <string name="reset_get">重新获取</string>
+    <string name="verify_phone">验证手机号</string>
+    <string name="verify">验证</string>
+    <string name="finish">完成</string>
+    <string name="income">收入</string>
+    <string name="cost">支出</string>
+    <string name="save">保存</string>
+    <string name="money_normal">0.00</string>
+    <string name="say_something">说点什么吧&#8230;</string>
+    <string name="cur_month_cost">当月支出</string>
+    <string name="cur_month_income">当月收入</string>
+    <string name="icon">头像</string>
+    <string name="username">用户名</string>
+    <string name="sex">性别</string>
+    <string name="age">年龄</string>
+    <string name="phone">电话</string>
+    <string name="email">邮箱</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="not_set">未设置</string>
+    <string name="year">岁</string>
+    <string name="setting">设置</string>
+    <!--Loading-->
+    <string name="load_msg">正在加载中&#8230;</string>
+    <string name="load_update">正在修改中&#8230;</string>
+    <string name="load_delete">正在删除中&#8230;</string>
+    <string name="load_send_code">正在发送验证码&#8230;</string>
+    <string name="load_verify">正在验证中&#8230;</string>
+    <string name="load_switch">正在切换中&#8230;</string>
+    <string name="load_login">正在登录中&#8230;</string>
+    <string name="load_sign">正在注册中&#8230;</string>
+
+</resources>
+

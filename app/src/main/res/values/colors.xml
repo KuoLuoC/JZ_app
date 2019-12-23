@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <color name="colorPrimary">#14baca</color>
+    <color name="colorPrimaryDark">#14baca</color>
+    <color name="colorAccent">#14baca</color>
+    <color name="font_black_deep">#323232</color>
+
+    <!--原谅绿-->
+    <color name="colorPrimaryDarkGreen1">#00BA91</color>
+    <color name="colorPrimaryDark1">#00BA91</color>
+    <color name="colorAccent1">#00BA91</color>
+
+    <!--酷炫黑-->
+    <color name="colorPrimaryDarkBlack">#010001</color>
+    <color name="colorPrimaryBlack">#010001</color>
+    <color name="colorAccentBlack">#010001</color>
+
+    <!--少女红-->
+    <color name="colorPrimaryDarkGreen">#FF5050</color>
+    <color name="colorPrimaryGreen">#FF5050</color>
+    <color name="colorAccentGreen">#FF5050</color>
+
+    <!--胖次蓝-->
+    <color name="colorPrimaryDarkBlue">#4E77FF</color>
+    <color name="colorPrimaryBlue">#4E77FF</color>
+    <color name="colorAccentBlue">#4E77FF</color>
+
+    <!--基佬紫-->
+    <color name="colorPrimaryDarkPurple">#8a00ff</color>
+    <color name="colorPrimaryPurple">#8800fb</color>
+    <color name="colorAccentPurple">#8a00ff</color>
+
+    <!--活力橙-->
+    <color name="colorPrimaryDarkOrange">#FF9150</color>
+    <color name="colorPrimaryOrange">#FF9150</color>
+    <color name="colorAccentOrange">#FF9150</color>
+
+    <!--大地棕-->
+    <color name="colorPrimaryDarkBrown">#6c3e35</color>
+    <color name="colorPrimaryBrown">#6c3e35</color>
+    <color name="colorAccentBrown">#6c3e35</color>
+
+    <color name="background">#f7f7f7</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="fenggexian">#ececec</color>
+    <color name="text_black3">#333333</color>
+    <color name="text_black6">#666666</color>
+    <color name="text_black9">#999999</color>
+    <color name="text_red">#FF5050</color>
+
+    <color name="red">#ff0000</color>
+
+    <color name="green">#008000</color> <!-- 绿色 -->
+    <color name="darkgreen">#006400</color> <!-- 暗绿色 -->
+
+    <!--aboutActivity字体颜色-->
+    <color name="material_grey_100">#fff5f5f5</color>
+    <color name="material_grey_300">#ffe0e0e0</color>
+    <color name="material_grey_50">#fffafafa</color>
+    <color name="material_grey_600">#ff757575</color>
+    <color name="material_grey_800">#ff424242</color>
+    <color name="material_grey_850">#ff303030</color>
+    <color name="material_grey_900">#ff212121</color>
+
+    <color name="colorDivide">#F9F9F9</color>
+    <color name="colorTabSelect">#FFE0AA</color>
+    <color name="colorMainDateBg">#F7F7F7</color>
+    <color name="colorControlNormal">#CCCCCC</color>
+    <!--页面默认背景色-->
+    <color name="colorBackground">#F9F9F9</color>
+    <!--文字颜色-->
+    <color name="textWhite">#FFFFFF</color>
+    <color name="textBlack">#333333</color>
+    <color name="textBrown">#6A4A57</color>
+    <color name="textPink">#FE88A8</color>
+    <color name="textMaple">#977F8A</color>
+    <color name="textLightBlue">#96D6EF</color>
+    <color name="textRed">#ED5543</color>
+    <color name="textGrayish">#999999</color>
+    <color name="textGray">#666666</color>
+
+    <color name="gray">#999999</color>
+    <color name="grayish">#EFEFEF</color>
+
+    <!--tab layout 文字颜色-->
+    <color name="tabNormalTextColor">#8CFFFFFF</color>
+    <color name="tabSelectedTextColor">#FFFFFF</color>
+    <color name="tabIndicatorColor">#FFFFFF</color>
+
+    <color name="colorPrimary1">#018CF8</color>
+    <!--adminhome-->
+    <color name="home_1">#b5baf5</color>
+    <color name="home_2">#ff822c</color>
+    <color name="home_3">#14baca</color>
+    <color name="home_4">#ffc30f</color>
+    <color name="home_5">#2d70e9</color>
+    <color name="home_6">#72cd36</color>
+    <color name="home_7">#d7eb00</color>
+    <color name="home_8">#cf2f1d</color>
+    <color name="home_9">#d89797</color>
+    <color name="home_10">#9d30eb</color>
+    <color name="home_11">#FE88A8</color>
+    <color name="home_12">#88564D</color>
+    <color name="home_13">#02073c</color>
+
+</resources>

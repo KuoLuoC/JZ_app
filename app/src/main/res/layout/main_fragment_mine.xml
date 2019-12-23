@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/about_page_background"
+    android:orientation="vertical">
+
+
+    <!--<include layout="@layout/app_toolbar"/>-->
+    <include layout="@layout/drawer_header"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:id="@+id/all"
+          >
+
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:id="@+id/nav_sync"
+                android:orientation="horizontal"
+                android:layout_marginTop="0dp"
+                android:background="@color/white"
+                android:elevation="1dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/img2"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/tongbu"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="同步数据"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:layout_toEndOf="@+id/img2"
+                    android:layout_toRightOf="@+id/img2"
+                    android:layout_marginLeft="15dp"
+                    />
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@mipmap/dayu"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="3dp"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:id="@+id/nav_edit"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:elevation="1dp"
+                >
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/img1"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/coutcalss"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="编辑资料"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:layout_toEndOf="@+id/img1"
+                    android:layout_toRightOf="@+id/img1" />
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@mipmap/dayu"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="3dp"
+                    />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/nav_theme"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@color/white"
+                android:elevation="1dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img4"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/theme" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toEndOf="@+id/img4"
+                    android:layout_toRightOf="@+id/img4"
+                    android:gravity="center_vertical"
+                    android:text="主   题"
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="3dp"
+                    android:src="@mipmap/dayu" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:id="@+id/nav_class"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:layout_marginTop="0dp"
+                android:elevation="1dp"
+                >
+
+                <ImageView
+                    android:layout_marginLeft="18dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/img6"
+                    android:src="@mipmap/zhangben"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:text="账单分类"
+                    android:gravity="center_vertical"
+                    android:layout_toEndOf="@+id/img6"
+                    android:layout_toRightOf="@+id/img6"
+                    android:layout_marginLeft="17dp"
+                    />
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@mipmap/dayu"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="3dp"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:id="@+id/nav_outexcle"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:layout_marginTop="0dp"
+                android:elevation="1dp"
+                >
+
+                <ImageView
+                    android:layout_marginLeft="18dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/img9"
+                    android:src="@mipmap/daochu"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:text="导出账单"
+                    android:gravity="center_vertical"
+                    android:layout_toEndOf="@+id/img9"
+                    android:layout_toRightOf="@+id/img9"
+                    android:layout_marginLeft="17dp"
+                    />
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@mipmap/dayu"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="3dp"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:id="@+id/nav_setting"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:layout_marginTop="0dp"
+                android:elevation="1dp"
+                >
+
+                <ImageView
+                    android:layout_marginLeft="18dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/img3"
+                    android:src="@mipmap/shezhi"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:text="设   置"
+                    android:gravity="center_vertical"
+                    android:layout_toEndOf="@+id/img3"
+                    android:layout_toRightOf="@+id/img3"
+                    android:layout_marginLeft="17dp"
+                    />
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@mipmap/dayu"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="3dp"
+                    />
+
+            </RelativeLayout>
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:id="@+id/nav_about"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:elevation="1dp"
+               >
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/img5"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/guanyu"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="关于APP"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:layout_toEndOf="@+id/img5"
+                    android:layout_toRightOf="@+id/img5"
+                    android:layout_marginLeft="15dp"
+                    />
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@mipmap/dayu"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="3dp"
+                    />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:visibility="invisible"
+                android:elevation="1dp"
+                >
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/img7"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/guanyu"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="关于APP"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:layout_toEndOf="@+id/img7"
+                    android:layout_toRightOf="@+id/img7"
+                    android:layout_marginLeft="15dp"
+                    />
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@mipmap/dayu"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="3dp"
+                    />
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/messageRl"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:layout_marginBottom="1dp"
+    android:gravity="center_vertical"
+    android:onClick="onItemClick">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center_vertical"
+        android:id="@+id/R1">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/news_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="15dp"
+                    android:ellipsize="end"
+                    android:text="号外|徐翔妻子:徐翔犯案前家庭资产逾60亿"
+                    android:maxLines="2"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/news_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:maxWidth="200dp"
+                    android:text="网易号外|2019-04-03 14:33:51"
+                    android:textSize="12dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/news_img"
+            android:layout_width="90dp"
+            android:layout_height="59dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/news"
+            />
+    </LinearLayout>
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E8EEF5"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+    </View>
+</RelativeLayout>
