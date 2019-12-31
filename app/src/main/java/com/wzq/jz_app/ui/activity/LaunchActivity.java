@@ -22,6 +22,12 @@ public class LaunchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //避免每次都重新创建启动页
+        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_launch);
 
         //第一个参数--target：你要对那个View绑定动画，今天我们要对ImageView绑定动画

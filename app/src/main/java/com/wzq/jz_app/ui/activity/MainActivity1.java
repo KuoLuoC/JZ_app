@@ -275,8 +275,7 @@ public class MainActivity1 extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             exit();
             return true;
         }
@@ -285,12 +284,21 @@ public class MainActivity1 extends BaseActivity {
 
     public void exit() {
         if ((System.currentTimeMillis() - mExitTime) > 2000) {
-            Toast.makeText(MainActivity1.this, "再点一次，退出家庭记账", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity1.this, "再点一次，返回桌面", Toast.LENGTH_SHORT).show();
             mExitTime = System.currentTimeMillis();
         } else {
 //            MyConfig.clearSharePre(this, "users");
-            this.finish();
-            System.exit(0);
+//            this.finish();
+//            System.exit(0);
+
+
+//            moveTaskToBack(false);//方法1退回到桌面进入后台
+
+            ////方法2退回到桌面进入后台
+            Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+            homeIntent.addCategory(Intent.CATEGORY_HOME);
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(homeIntent);
         }
     }
 

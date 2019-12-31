@@ -38,7 +38,7 @@
         android:theme="@style/AppTheme">
 
         <activity android:name="com.wzq.jz_app.ui.activity.LaunchActivity"
-            android:launchMode="singleTask">
+            android:launchMode="standard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -48,7 +48,13 @@
 
         <activity
             android:name="com.wzq.jz_app.ui.activity.MainActivity1"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<action android:name="android.intent.action.VIEW" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
         <activity
             android:name="com.wzq.jz_app.ui.activity.LoginActivity"
             android:screenOrientation="portrait"/>
