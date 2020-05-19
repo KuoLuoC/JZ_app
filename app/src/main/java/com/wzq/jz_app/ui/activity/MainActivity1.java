@@ -21,11 +21,14 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TabHost;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.wzq.jz_app.MyApplication;
 import com.wzq.jz_app.R;
 import com.wzq.jz_app.base.BaseActivity;
 import com.wzq.jz_app.model.bean.remote.MyUser;
 import com.wzq.jz_app.net.IoMainScheduler;
+import com.wzq.jz_app.ui.fragment.MineFragment;
 import com.wzq.jz_app.ui.news.NewsBean;
 import com.google.gson.Gson;
 
@@ -70,7 +73,6 @@ public class MainActivity1 extends BaseActivity {
         }
 
 
-//        getSupportActionBar().setTitle("首页");
         radiogroup = (RadioGroup) findViewById(R.id.radiogroup);
         Intent it_get = getIntent();
          theme = it_get.getStringExtra("THEME");
@@ -266,9 +268,6 @@ public class MainActivity1 extends BaseActivity {
     }
 
 
-
-
-    //禁止使用返回键返回到上一页,但是可以直接退出程序**
     //退出时的时间
     private long mExitTime;
     //对返回键进行监听
@@ -287,14 +286,12 @@ public class MainActivity1 extends BaseActivity {
             Toast.makeText(MainActivity1.this, "再点一次，返回桌面", Toast.LENGTH_SHORT).show();
             mExitTime = System.currentTimeMillis();
         } else {
-//            MyConfig.clearSharePre(this, "users");
+//            直接关闭当前活动页面
 //            this.finish();
 //            System.exit(0);
 
-
-//            moveTaskToBack(false);//方法1退回到桌面进入后台
-
-            ////方法2退回到桌面进入后台
+          //moveTaskToBack(false);//方法1退回到桌面进入后台
+         //方法2退回到桌面进入后台
             Intent homeIntent = new Intent(Intent.ACTION_MAIN);
             homeIntent.addCategory(Intent.CATEGORY_HOME);
             homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -344,5 +341,4 @@ public class MainActivity1 extends BaseActivity {
             }
         });
     }
-
 }

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paths>
-    <external-path path="image/" name="image" />
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <root-path name="root" path="" />
+    <files-path name="files" path="whj/" />
+    <cache-path name="cache" path="whj/" />
+    <external-path path="MyPet/" name="MyPetRoot" />
+    <external-path name="sdcard_root" path="."/>
 </paths>

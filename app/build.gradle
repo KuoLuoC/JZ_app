@@ -12,6 +12,10 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'mips'
+        }
     }
     buildTypes {
         release {
@@ -22,6 +26,12 @@ android {
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
     }
 }
 greendao {
@@ -56,8 +66,8 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.2'
     //Eventbus 事件依赖
     implementation 'org.greenrobot:eventbus:3.1.1'
-    //Bmob  后端云服务平台
-    implementation 'cn.bmob.android:bmob-sdk:3.7.2'
+    //Bmob  后端云服务平台（下载失败本地导入）
+//    implementation 'cn.bmob.android:bmob-sdk:3.7.2'
     //Rx 异步请求
     implementation "io.reactivex.rxjava2:rxjava:2.2.2"
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
@@ -88,5 +98,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //导出数据到Excel架包
     implementation group: 'net.sourceforge.jexcelapi', name: 'jxl', version: '2.6.12'
+    implementation files('libs\\BmobSDK_3.7.4_20190523.jar')
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
 }
 

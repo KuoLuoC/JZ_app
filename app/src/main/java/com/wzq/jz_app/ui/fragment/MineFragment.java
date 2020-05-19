@@ -7,9 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -43,8 +45,12 @@ import com.wzq.jz_app.ui.activity.SettingActivity;
 import com.wzq.jz_app.ui.activity.SortActivity;
 import com.wzq.jz_app.ui.activity.UserInfoActivity;
 import com.wzq.jz_app.ui.adapter.MainFragmentPagerAdapter;
+import com.wzq.jz_app.utils.Base64BitmapUtils;
 import com.wzq.jz_app.utils.ExcelUtil;
+import com.wzq.jz_app.utils.FileProvider7;
+import com.wzq.jz_app.utils.FileUtil;
 import com.wzq.jz_app.utils.ImageUtils;
+import com.wzq.jz_app.utils.OSUtil;
 import com.wzq.jz_app.utils.SelectphotoUtils;
 import com.wzq.jz_app.utils.SharedPUtils;
 import com.wzq.jz_app.utils.ThemeManager;
@@ -58,6 +64,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +77,7 @@ import cn.bmob.v3.listener.UploadFileListener;
 import static android.app.Activity.RESULT_OK;
 import static cn.bmob.v3.Bmob.getApplicationContext;
 import static com.wzq.jz_app.utils.SelectphotoUtils.getRealFilePathFromUri;
+
 
 /**
  * 作者：wzq on 2019/4/2.
@@ -96,9 +104,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     protected static final int CHOOSE_PICTURE = 0;
     protected static final int TAKE_PICTURE = 1;
     protected static final int CROP_SMALL_PICTURE = 2;
-    //请求截图
-    private static final int REQUEST_CROP_PHOTO = 102;
-    //方形还是圆形截图
+    // 方形还是圆形截图
     private int type = 1;//"1"圆形 "2"方形
     //请求访问外部存储
     private static final int READ_EXTERNAL_STORAGE_REQUEST_CODE = 103;
@@ -125,7 +131,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     private RelativeLayout about;
     private RelativeLayout countClass;
     private RelativeLayout nav_outexcle;
-
 
 
     /***************************************************************************/
@@ -174,6 +179,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
 
         //设置头部账户
         setDrawerHeaderAccount();
+        if (currentUser != null) {//登录状态
+            getHeadimg();
+            Log.e("123", "头像: " + currentUser.getImage());
+        }
     }
 
     @Override
@@ -243,7 +252,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     }
                 }
                 String excleCountName = "/wzq.xls";
-                String[] title = {"本地id", "服务器端id", "金额", "内容", "用户id", "支付方式", "图标", "账单分类", "分类图标", "创建时间", "收入支出", "版本"} ;
+                String[] title = {"本地id", "服务器端id", "金额", "内容", "用户id", "支付方式", "图标", "账单分类", "分类图标", "创建时间", "收入支出", "版本"};
                 String sheetName = "demoSheetName";
                 List<BBill> bBills = new ArrayList<>();
                 bBills = LocalRepository.getInstance().getBBills();
@@ -310,15 +319,16 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             dialogView1.setOnDialogClickListener(new ButtomDialogView1.OnDialogClickListener() {
                 @Override
                 public void onclick1() {//相机
-//                    selectFile = new File(Environment.getExternalStorageDirectory(), "WZQ/" +"head" + ".jpg");
-                    selectFile = new File(SelectphotoUtils.checkDirPath(Environment.getExternalStorageDirectory().getPath() + "/image/"), System.currentTimeMillis() + ".jpg");
+                    selectFile = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis()+"jz_app.jpg");
                     SelectphotoUtils.takePicture(getActivity(), MineFragment.this, selectFile);
                     dialogView1.dismiss();
                 }
 
                 @Override
                 public void onclick2() {//打开相册
-                    SelectphotoUtils.selectPicture(getActivity(), MineFragment.this);
+                    Intent openAlbumIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    openAlbumIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                    startActivityForResult(openAlbumIntent, CHOOSE_PICTURE);
                     dialogView1.dismiss();
                 }
 
@@ -359,46 +369,37 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         switch (requestCode) {
             case CHOOSE_PICTURE:// 直接从相册获取
                 try {
-                    SelectphotoUtils.gotoClipActivity(getActivity(), MineFragment.this, data.getData(), type);
+                    selectFile  = new File(Environment.getExternalStorageDirectory(), "jz_app.jpg");
+                    SelectphotoUtils.startPhotoZoom(data.getData(), MineFragment.this, selectFile);
                 } catch (NullPointerException e) {
-                    e.printStackTrace();
+                    e.printStackTrace();// 用户点击取消操作
                 }
                 break;
             case TAKE_PICTURE:// 调用相机拍照
-                try {
-                    if (isExistSd()) {
-                        SelectphotoUtils.gotoClipActivity(getActivity(), MineFragment.this, Uri.fromFile(selectFile), type);
+                if (isExistSd()) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        //如果是7.0剪裁图片 同理 需要把uri包装
+                        Uri fileUri = FileProvider7.getUriForFile(getActivity(), selectFile);
+                        if (selectFile.exists()) {
+                            //对相机拍照照片进行裁剪
+                            SelectphotoUtils.startPhotoZoom(fileUri, MineFragment.this, selectFile);
+                        }
                     } else {
-                        Toast.makeText(getActivity(), "图片保存失败", Toast.LENGTH_SHORT).show();
+                        if (selectFile.exists()) {
+                            //对相机拍照照片进行裁剪
+                            SelectphotoUtils.startPhotoZoom(Uri.fromFile(selectFile), MineFragment.this, selectFile);
+                        }
                     }
-                } catch (Exception e) {
+                } else {
+                    Toast.makeText(getActivity(), "图片保存失败", Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case REQUEST_CROP_PHOTO://取得裁剪后的图片
-                if (resultCode == RESULT_OK) {
-                    final Uri uri = data.getData();
-                    if (uri == null) {
-                        return;
-                    }
-                    String cropImagePath = getRealFilePathFromUri(getApplicationContext(), uri);
-                    Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
-                    //此处后面可以将bitMap转为二进制上传后台网络
-                    Toast.makeText(getActivity(),"上传中",Toast.LENGTH_SHORT).show();
-                    //......
-                    uploadPic(bitMap);
+            case CROP_SMALL_PICTURE://取得裁剪后的图片
+                if (data != null) {
+                    setPicToView(data);
                 }
+                ;
                 break;
-        }
-
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case USERINFOACTIVITY_CODE:
-                    setDrawerHeaderAccount();
-                    break;
-                case LOGINACTIVITY_CODE:
-                    setDrawerHeaderAccount();
-                    break;
-            }
         }
     }
 
@@ -413,6 +414,39 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     }
 
     /**
+     * 保存裁剪之后的图片数据
+     *
+     * @param data
+     */
+    protected void setPicToView(Intent data) {
+        Bundle extras = data.getExtras();
+        Bitmap bitmap = null;
+        try {
+            if (OSUtil.isMIUI()) {
+                Uri uritempFile = Uri.parse("file://" + "/" + selectFile);
+                try {
+                    bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(uritempFile));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                if (extras != null) {
+                    bitmap = extras.getParcelable("data");
+
+                }
+            }
+            //获得图片路径
+            File filepath = SelectphotoUtils.saveFile(bitmap, Environment.getExternalStorageDirectory().toString(), "jz_app.jpg");
+            //此处后面可以将bitMap转为二进制上传后台网络
+            Toast.makeText(getActivity(), "上传中", Toast.LENGTH_SHORT).show();
+            uploadPic(bitmap);
+        } catch (Exception e) {
+
+        }
+    }
+
+
+    /**
      * 设置DrawerHeader的用户信息
      */
     public void setDrawerHeaderAccount() {
@@ -424,7 +458,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
 
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.placeholder(R.drawable.icon_head_error);
-            Glide.with(getActivity()).load(currentUser.getImage()).apply(requestOptions).into(drawerIv);
+//            Glide.with(this).load(currentUser.getImage()).apply(requestOptions).into(drawerIv);
 
         } else {
             drawerTvAccount.setText("账号");
@@ -432,29 +466,22 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
-            case WRITE_EXTERNAL_STORAGE_REQUEST_CODE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    selectFile = new File(SelectphotoUtils.checkDirPath(Environment.getExternalStorageDirectory().getPath() + "/image/"), System.currentTimeMillis() + ".jpg");
-                } else {
-                    Toast.makeText(getActivity(), "你拒绝了权限申请，可能无法打开相机扫码哟！", Toast.LENGTH_SHORT).show();
-                }
+            case 100:
+                selectFile = new File(Environment.getExternalStorageDirectory(), "jz_app.jpg");
+                SelectphotoUtils.takePicture(getActivity(), MineFragment.this, selectFile);
                 break;
 
-            case READ_EXTERNAL_STORAGE_REQUEST_CODE:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    SelectphotoUtils.selectPicture(getActivity(), MineFragment.this);
-                } else {
-                    Toast.makeText(getActivity(), "你拒绝了权限申请，可能无法打开相册哟！", Toast.LENGTH_SHORT).show();
-                }
+            case 101:
+                selectFile = new File(Environment.getExternalStorageDirectory(), "jz_app.jpg");
+                SelectphotoUtils.takePicture(getActivity(), MineFragment.this, selectFile);
                 break;
             default:
         }
     }
-
 
     /**
      * 保存头像并上传服务器
@@ -483,18 +510,32 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                                 if (e == null) {
                                     Toast.makeText(getActivity(), "上传成功", Toast.LENGTH_SHORT).show();
                                     drawerIv.setImageBitmap(bitmap);
+                                    final String img = Base64BitmapUtils.bitmapToBase64(bitmap);
+                                    String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Bill/head/img/";
+                                    FileUtil.writeToFile(filePath, "data:image/png;base64," + img);
                                 } else {
-                                    Toast.makeText(getActivity(), "上传失败,"+e.toString(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "上传失败," + e.toString(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
                     } else {
-                        Toast.makeText(getActivity(), "上传失败,"+e.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "上传失败," + e.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
     }
+
+
+    private void getHeadimg() {
+        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Bill/head/img/";
+        String img = FileUtil.readFile(filePath);
+        if (!TextUtils.isEmpty(img)) {
+            Bitmap bitmap = Base64BitmapUtils.stringToBitmap(img);
+            drawerIv.setImageBitmap(bitmap);
+        }
+    }
+
 
     //EvenBus
     @Subscribe

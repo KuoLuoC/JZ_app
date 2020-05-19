@@ -88,5 +88,14 @@
     <string name="load_login">正在登录中&#8230;</string>
     <string name="load_sign">正在注册中&#8230;</string>
 
+
+    <!--拍照-->
+    <string name="qr_name">拍照</string>
+    <string name="i_know">我知道了</string>
+    <string name="permission">抱歉,你的%1$s权限没有打开,无法正常服务
+        \n请点击”设置”->在应用程序中找到”popon”->权限管理->%2$s->”允许”即可 </string>
+    <string name="camera">摄像头(相机)</string>
+    <string name="sdcar">存储权限</string>
+
 </resources>
 

@@ -73,8 +73,6 @@ public class SortActivity extends BaseMVPActivity<BillNoteContract.Presenter>
     }
 
 
-
-
     @Override
     protected void initClick() {
         super.initClick();
@@ -101,7 +99,7 @@ public class SortActivity extends BaseMVPActivity<BillNoteContract.Presenter>
                 //更新账单分类排序
                 saveBSorts();
                 return true;
-        }
+            }
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
@@ -123,7 +121,7 @@ public class SortActivity extends BaseMVPActivity<BillNoteContract.Presenter>
                         }
                         ))
                         //取消删除恢复
-                        .onNegative(((dialog, which) ->{
+                        .onNegative(((dialog, which) -> {
 //                          刷新恢复消失的item
                             billSortAdapter.notifyItemChanged(index);
 
@@ -221,19 +219,19 @@ public class SortActivity extends BaseMVPActivity<BillNoteContract.Presenter>
                 .title("添加分类")
                 .inputType(InputType.TYPE_CLASS_TEXT)
                 .inputRangeRes(0, 200, R.color.textRed)
-                .input("分类名称", null, (dialog, input) -> {
-                    content[0] =input.toString();
-                })
-                .positiveText("确定")
-                .onPositive((dialog, which) -> {
-                    if (TextUtils.isEmpty(content[0])) {
-                        ToastUtils.show(mContext,"内容不能为空！请重新添加");
+                .input("分类名称", content[0], (dialog, input) -> {
+                    if (TextUtils.isEmpty(input)) {
+                        ToastUtils.show(mContext, "内容不能为空！请重新添加");
                     } else {
-                        BSort sort = new BSort(null, content[0], "sort_tianjiade.png",mDatas.size(),0, !isOutcome);
+                        content[0] = input.toString();
+                        BSort sort = new BSort(null, content[0], "sort_tianjiade.png", mDatas.size(), 0, !isOutcome);
                         mPresenter.addBSort(sort);
                         mDatas.add(sort);
+                        billSortAdapter.notifyDataSetChanged();
                     }
+
                 })
+                .positiveText("确定")
                 .show();
     }
 

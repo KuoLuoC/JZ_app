@@ -75,10 +75,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> finish());
-
-        storeCL.setRightText(GlideCacheUtil.getInstance().getCacheSize(mContext));
         try {
-            storeCL.setRightText(DataClearUtils.getTotalCacheSize(mContext)+"");
+            storeCL.setRightText(DataClearUtils.getTotalCacheSize(SettingActivity.this)+"");
         } catch (Exception e) {
             e.printStackTrace();
         }

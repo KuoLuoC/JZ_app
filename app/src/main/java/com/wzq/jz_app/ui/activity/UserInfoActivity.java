@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -29,6 +31,8 @@ import com.wzq.jz_app.base.BaseMVPActivity;
 import com.wzq.jz_app.model.bean.remote.MyUser;
 import com.wzq.jz_app.presenter.UserInfoPresenter;
 import com.wzq.jz_app.presenter.contract.UserInfoContract;
+import com.wzq.jz_app.utils.Base64BitmapUtils;
+import com.wzq.jz_app.utils.FileUtil;
 import com.wzq.jz_app.utils.ImageUtils;
 import com.wzq.jz_app.utils.ProgressUtils;
 import com.wzq.jz_app.utils.SnackbarUtils;
@@ -103,19 +107,19 @@ public class UserInfoActivity extends BaseMVPActivity<UserInfoContract.Presenter
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> {
-            //返回消息更新上个Activity数据
-           /* setResult(RESULT_OK, new Intent());*/
-           Intent intent=new Intent();
-            intent.putExtra("THEME", "4");
-            intent.setClass(UserInfoActivity.this, MainActivity1.class);
-            startActivity(intent);
             finish();
         });
 
 
 
         //加载当前头像
-        Glide.with(mContext).load(currentUser.getImage()).into(iconIv);
+//        Glide.with(mContext).load(currentUser.getImage()).into(iconIv);
+        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Bill/head/img/";
+        String img = FileUtil.readFile(filePath);
+        if (!TextUtils.isEmpty(img)) {
+            Bitmap bitmap = Base64BitmapUtils.stringToBitmap(img);
+            iconIv.setImageBitmap(bitmap);
+        }
         //添加用户信息
         usernameCL.setRightText(currentUser.getUsername());
         sexCL.setRightText(currentUser.getGender());
@@ -137,7 +141,7 @@ public class UserInfoActivity extends BaseMVPActivity<UserInfoContract.Presenter
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rlt_update_icon:  //头像
-                showIconDialog();
+//                showIconDialog();
                 break;
             case R.id.cil_username:  //用户名
                 SnackbarUtils.show(mContext, "用户名不能修改！");
@@ -212,7 +216,7 @@ public class UserInfoActivity extends BaseMVPActivity<UserInfoContract.Presenter
      * 显示更换邮箱对话框
      */
     public void showMailDialog() {
-         email = currentUser.getEmail();
+        email = currentUser.getEmail();
         new MaterialDialog.Builder(mContext)
                 .title("邮箱")
                 .inputType(InputType.TYPE_CLASS_TEXT)
@@ -334,8 +338,9 @@ public class UserInfoActivity extends BaseMVPActivity<UserInfoContract.Presenter
             //android 7.0系统解决拍照的问题android.os.FileUriExposedException:file:///storage/emulated/0/test.txt
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
-//            tempUri = FileProvider.getUriForFile(getActivity(),
-//                    "com.copasso.cocobill.fileProvider", file);
+            tempUri = FileProvider.getUriForFile(UserInfoActivity.this
+                    ,
+                    "com.copasso.cocobill.fileProvider", file);
         } else {
             tempUri = Uri.fromFile(new File(Environment
                     .getExternalStorageDirectory(), "image.jpg"));
@@ -343,9 +348,9 @@ public class UserInfoActivity extends BaseMVPActivity<UserInfoContract.Presenter
 
 
         // 指定照片保存路径（SD卡），image.jpg为一个临时文件，每次拍照后这个图片都会被替换
-       if(isExistSd()){
-           openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, tempUri);
-       }
+        if(isExistSd()){
+            openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, tempUri);
+        }
         openCameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,0);
         startActivityForResult(openCameraIntent,TAKE_PICTURE);
 
@@ -427,6 +432,9 @@ public class UserInfoActivity extends BaseMVPActivity<UserInfoContract.Presenter
                             public void done(BmobException e) {
                                 if (e==null) {
                                     Toast.makeText(UserInfoActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
+                                    final String img = Base64BitmapUtils.bitmapToBase64(bitmap);
+                                    String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Bill/head/img/";
+                                    FileUtil.writeToFile(filePath, "data:image/png;base64," + img);
                                     iconIv.setImageBitmap(bitmap);
                                 }else {
                                     Toast.makeText(UserInfoActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
